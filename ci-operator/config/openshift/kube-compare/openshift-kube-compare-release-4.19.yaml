@@ -1,8 +1,3 @@
-base_images:
-  golangci-lint:
-    name: golangci-lint
-    namespace: ci
-    tag: v1.63.4
 binary_build_commands: GOFLAGS="-mod=readonly" make build
 build_root:
   image_stream_tag:
@@ -62,8 +57,7 @@ tests:
   commands: |
     make golangci-lint
   container:
-    clone: true
-    from: golangci-lint
+    from: bin
   skip_if_only_changed: (^docs/)|((^|/)OWNERS(_ALIASES)?$)|((^|/)[A-Z]+\.md$)
 - as: security
   optional: true
